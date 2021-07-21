@@ -1,5 +1,5 @@
 <h1 align="center">
-  <br> Y Talk 🗣
+  <br> Y Talk
 </h1>
 <h2 align="center">
     A personal all-in-one instant chat messaging app. ✨
