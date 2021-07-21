@@ -15,7 +15,8 @@
 <ul>
 <li>Private Messaging</li>
 <li>Group Messaging</li>
-<li>Reaacting to messages (Smiliar to Instagram)</li>
+<li>Reaacting to messages (Similar to Instagram)</li>
+<li>Delete sent messages</li>
 <li>Multimedia Sharing</li>
 <li>Story and Status Update</li>
 <li>Online Indicator</li>
