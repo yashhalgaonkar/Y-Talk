@@ -1,3 +1,7 @@
+<p align='center'>
+  <img src="readme/y-icon.jpg" width="75" height="75" />
+</p>
+
 <h1 align="center">
   <br> Y Talk
 </h1>
