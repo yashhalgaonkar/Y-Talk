@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Adapters;
+package com.yashhalgaonkar.ytalkapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,10 +15,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mianasad.chatsapp.Activities.ChatActivity;
-import com.mianasad.chatsapp.R;
-import com.mianasad.chatsapp.Models.User;
-import com.mianasad.chatsapp.databinding.RowConversationBinding;
+import com.yashhalgaonkar.ytalkapp.Activities.ChatActivity;
+import com.yashhalgaonkar.ytalkapp.R;
+import com.yashhalgaonkar.ytalkapp.Models.User;
+import com.yashhalgaonkar.ytalkapp.databinding.RowConversationBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

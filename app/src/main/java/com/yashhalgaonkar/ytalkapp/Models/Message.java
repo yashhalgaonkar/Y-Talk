@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Models;
+package com.yashhalgaonkar.ytalkapp.Models;
 
 public class Message {
     private String messageId, message, senderId, imageUrl;

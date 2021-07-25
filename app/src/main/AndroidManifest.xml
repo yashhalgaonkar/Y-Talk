@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mianasad.chatsapp">
+    package="com.yashhalgaonkar.ytalkapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatsApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.GroupChatActivity"></activity>
+        <activity android:name="com.yashhalgaonkar.ytalkapp.Activities.GroupChatActivity"></activity>
         <activity
-            android:name=".Activities.ChatActivity"
+            android:name="com.yashhalgaonkar.ytalkapp.Activities.ChatActivity"
             android:theme="@style/Theme.ChatsApp.NoActionBar" />
-        <activity android:name=".Activities.SetupProfileActivity" />
+        <activity android:name="com.yashhalgaonkar.ytalkapp.Activities.SetupProfileActivity" />
         <activity
-            android:name=".Activities.OTPActivity"
+            android:name="com.yashhalgaonkar.ytalkapp.Activities.OTPActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".Activities.PhoneNumberActivity"
+            android:name="com.yashhalgaonkar.ytalkapp.Activities.PhoneNumberActivity"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.yashhalgaonkar.ytalkapp.Activities.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <meta-data

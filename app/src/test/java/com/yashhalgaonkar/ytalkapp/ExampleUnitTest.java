@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp;
+package com.yashhalgaonkar.ytalkapp;
 
 import org.junit.Test;
 

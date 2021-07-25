@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Models;
+package com.yashhalgaonkar.ytalkapp.Models;
 
 import java.util.ArrayList;
 

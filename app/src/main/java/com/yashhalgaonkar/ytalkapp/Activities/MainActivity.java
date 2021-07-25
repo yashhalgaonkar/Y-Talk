@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Activities;
+package com.yashhalgaonkar.ytalkapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,10 +10,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,15 +26,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.mianasad.chatsapp.Adapters.TopStatusAdapter;
-import com.mianasad.chatsapp.Models.Status;
-import com.mianasad.chatsapp.Models.UserStatus;
-import com.mianasad.chatsapp.R;
-import com.mianasad.chatsapp.Models.User;
-import com.mianasad.chatsapp.Adapters.UsersAdapter;
-import com.mianasad.chatsapp.databinding.ActivityMainBinding;
+import com.yashhalgaonkar.ytalkapp.Adapters.TopStatusAdapter;
+import com.yashhalgaonkar.ytalkapp.Models.Status;
+import com.yashhalgaonkar.ytalkapp.Models.UserStatus;
+import com.yashhalgaonkar.ytalkapp.R;
+import com.yashhalgaonkar.ytalkapp.Models.User;
+import com.yashhalgaonkar.ytalkapp.Adapters.UsersAdapter;
+import com.yashhalgaonkar.ytalkapp.databinding.ActivityMainBinding;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;

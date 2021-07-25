@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Activities;
+package com.yashhalgaonkar.ytalkapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,19 +22,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.mianasad.chatsapp.Adapters.GroupMessagesAdapter;
-import com.mianasad.chatsapp.Adapters.MessagesAdapter;
-import com.mianasad.chatsapp.Models.Message;
-import com.mianasad.chatsapp.R;
+import com.yashhalgaonkar.ytalkapp.Adapters.GroupMessagesAdapter;
+import com.yashhalgaonkar.ytalkapp.Models.Message;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 public class GroupChatActivity extends AppCompatActivity {
 
-    com.mianasad.chatsapp.databinding.ActivityGroupChatBinding binding;
+    com.yashhalgaonkar.ytalkapp.databinding.ActivityGroupChatBinding binding;
     GroupMessagesAdapter adapter;
     ArrayList<Message> messages;
 
@@ -48,7 +45,7 @@ public class GroupChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = com.mianasad.chatsapp.databinding.ActivityGroupChatBinding.inflate(getLayoutInflater());
+        binding = com.yashhalgaonkar.ytalkapp.databinding.ActivityGroupChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().setTitle("Group Chat");

@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Adapters;
+package com.yashhalgaonkar.ytalkapp.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,22 +15,16 @@ import com.github.pgreze.reactions.ReactionPopup;
 import com.github.pgreze.reactions.ReactionsConfig;
 import com.github.pgreze.reactions.ReactionsConfigBuilder;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.mianasad.chatsapp.Models.Message;
-import com.mianasad.chatsapp.Models.User;
-import com.mianasad.chatsapp.R;
-import com.mianasad.chatsapp.databinding.DeleteDialogBinding;
-import com.mianasad.chatsapp.databinding.ItemReceiveBinding;
-import com.mianasad.chatsapp.databinding.ItemReceiveGroupBinding;
-import com.mianasad.chatsapp.databinding.ItemSentBinding;
-import com.mianasad.chatsapp.databinding.ItemSentGroupBinding;
+import com.yashhalgaonkar.ytalkapp.Models.Message;
+import com.yashhalgaonkar.ytalkapp.R;
+import com.yashhalgaonkar.ytalkapp.databinding.DeleteDialogBinding;
+import com.yashhalgaonkar.ytalkapp.databinding.ItemReceiveBinding;
+import com.yashhalgaonkar.ytalkapp.databinding.ItemSentBinding;
 
 import java.util.ArrayList;
 
-public class GroupMessagesAdapter extends RecyclerView.Adapter {
+public class MessagesAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<Message> messages;
@@ -38,19 +32,24 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
     final int ITEM_SENT = 1;
     final int ITEM_RECEIVE = 2;
 
-    public GroupMessagesAdapter(Context context, ArrayList<Message> messages) {
+    String senderRoom;
+    String receiverRoom;
+
+    public MessagesAdapter(Context context, ArrayList<Message> messages, String senderRoom, String receiverRoom) {
         this.context = context;
         this.messages = messages;
+        this.senderRoom = senderRoom;
+        this.receiverRoom = receiverRoom;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType == ITEM_SENT) {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_sent_group, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.item_sent, parent, false);
             return new SentViewHolder(view);
         } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_receive_group, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.item_receive, parent, false);
             return new ReceiverViewHolder(view);
         }
     }
@@ -98,7 +97,15 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
             message.setFeeling(pos);
 
             FirebaseDatabase.getInstance().getReference()
-                    .child("public")
+                    .child("chats")
+                    .child(senderRoom)
+                    .child("messages")
+                    .child(message.getMessageId()).setValue(message);
+
+            FirebaseDatabase.getInstance().getReference()
+                    .child("chats")
+                    .child(receiverRoom)
+                    .child("messages")
                     .child(message.getMessageId()).setValue(message);
 
 
@@ -118,24 +125,6 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                         .placeholder(R.drawable.placeholder)
                         .into(viewHolder.binding.image);
             }
-
-            FirebaseDatabase.getInstance()
-                    .getReference().child("users")
-                    .child(message.getSenderId())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()) {
-                                User user = snapshot.getValue(User.class);
-                                viewHolder.binding.name.setText("@" + user.getName());
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
             viewHolder.binding.message.setText(message.getMessage());
 
@@ -178,9 +167,16 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                             message.setMessage("This message is removed.");
                             message.setFeeling(-1);
                             FirebaseDatabase.getInstance().getReference()
-                                    .child("public")
+                                    .child("chats")
+                                    .child(senderRoom)
+                                    .child("messages")
                                     .child(message.getMessageId()).setValue(message);
 
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("chats")
+                                    .child(receiverRoom)
+                                    .child("messages")
+                                    .child(message.getMessageId()).setValue(message);
                             dialog.dismiss();
                         }
                     });
@@ -189,7 +185,9 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                         @Override
                         public void onClick(View v) {
                             FirebaseDatabase.getInstance().getReference()
-                                    .child("public")
+                                    .child("chats")
+                                    .child(senderRoom)
+                                    .child("messages")
                                     .child(message.getMessageId()).setValue(null);
                             dialog.dismiss();
                         }
@@ -217,23 +215,6 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                         .placeholder(R.drawable.placeholder)
                         .into(viewHolder.binding.image);
             }
-            FirebaseDatabase.getInstance()
-                    .getReference().child("users")
-                    .child(message.getSenderId())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()) {
-                                User user = snapshot.getValue(User.class);
-                                viewHolder.binding.name.setText("@" + user.getName());
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
             viewHolder.binding.message.setText(message.getMessage());
 
             if(message.getFeeling() >= 0) {
@@ -276,9 +257,16 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                             message.setMessage("This message is removed.");
                             message.setFeeling(-1);
                             FirebaseDatabase.getInstance().getReference()
-                                    .child("public")
+                                    .child("chats")
+                                    .child(senderRoom)
+                                    .child("messages")
                                     .child(message.getMessageId()).setValue(message);
 
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("chats")
+                                    .child(receiverRoom)
+                                    .child("messages")
+                                    .child(message.getMessageId()).setValue(message);
                             dialog.dismiss();
                         }
                     });
@@ -287,7 +275,9 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
                         @Override
                         public void onClick(View v) {
                             FirebaseDatabase.getInstance().getReference()
-                                    .child("public")
+                                    .child("chats")
+                                    .child(senderRoom)
+                                    .child("messages")
                                     .child(message.getMessageId()).setValue(null);
                             dialog.dismiss();
                         }
@@ -315,20 +305,20 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter {
 
     public class SentViewHolder extends RecyclerView.ViewHolder {
 
-        ItemSentGroupBinding binding;
+        ItemSentBinding binding;
         public SentViewHolder(@NonNull View itemView) {
             super(itemView);
-            binding = ItemSentGroupBinding.bind(itemView);
+            binding = ItemSentBinding.bind(itemView);
         }
     }
 
     public class ReceiverViewHolder extends RecyclerView.ViewHolder {
 
-        ItemReceiveGroupBinding binding;
+        ItemReceiveBinding binding;
 
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
-            binding = ItemReceiveGroupBinding.bind(itemView);
+            binding = ItemReceiveBinding.bind(itemView);
         }
     }
 

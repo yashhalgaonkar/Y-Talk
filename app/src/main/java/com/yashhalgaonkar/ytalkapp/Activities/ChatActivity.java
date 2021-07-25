@@ -1,4 +1,4 @@
-package com.mianasad.chatsapp.Activities;
+package com.yashhalgaonkar.ytalkapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,10 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,16 +22,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.mianasad.chatsapp.Adapters.MessagesAdapter;
-import com.mianasad.chatsapp.Models.Message;
-import com.mianasad.chatsapp.R;
-import com.mianasad.chatsapp.databinding.ActivityChatBinding;
+import com.yashhalgaonkar.ytalkapp.Adapters.MessagesAdapter;
+import com.yashhalgaonkar.ytalkapp.Models.Message;
+import com.yashhalgaonkar.ytalkapp.R;
+import com.yashhalgaonkar.ytalkapp.databinding.ActivityChatBinding;
 
 import java.util.ArrayList;
 import java.util.Calendar;
